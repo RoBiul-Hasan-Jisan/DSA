@@ -3,12 +3,16 @@ import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-do
 
 import Array from "./DSA/Array";
 import Graph from "./DSA/Graph";
-import LinkedLists from "./DSA/LinkedLists"; // Fixed: LikedLists → LinkedLists
-
+import LinkedLists from "./DSA/LinkedLists"; 
+import BinarySearch from "./DSA/BinarySearch"; 
+import Header from "./Header.tsx";
 const topics = [
   { name: "Array", path: "/array" },
   { name: "Graph", path: "/graph" },
-  { name: "Linked Lists", path: "/linkedlists" }, // Fixed path
+  { name: "Linked Lists", path: "/linkedlists" }, 
+   { name: "BinarySearch", path: "/binarysearch" }
+  
+   
 ];
 
 const ResponsiveSidebarWrapper: React.FC<{
@@ -72,17 +76,34 @@ const App: React.FC = () => {
   const toggleSidebar = () => setShowSidebar((prev) => !prev);
 
   return (
-    <Router>
+      <Router>
+      {/* Header */}
+      <Header />
+
       {/* Hamburger Button */}
       <button
-        onClick={toggleSidebar}
-        className="fixed top-4 left-4 z-40 p-2 rounded-md bg-blue-600 text-white md:hidden"
-        aria-label="Toggle sidebar"
-      >
-        ☰
+  onClick={toggleSidebar}
+  className="fixed top-16 left-4 z-50 bg-transparent p-1 rounded-md md:hidden"
+  style={{ width: "24px", height: "24px" }}
+  aria-label="Toggle Menu"
+>
+        <svg
+          className="w-6 h-6 text-gray-700"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
       </button>
 
-      <div className="p-6 flex space-x-6 min-h-[calc(100vh-120px)] relative">
+      {/* Main layout wrapper */}
+      <div
+  className="p-6 flex space-x-6 min-h-[calc(100vh-64px)] relative"
+  style={{ paddingTop: "64px" }}
+>
         {/* Sidebar */}
         <ResponsiveSidebarWrapper showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
 
@@ -96,6 +117,7 @@ const App: React.FC = () => {
             <Route path="/array" element={<Array />} />
             <Route path="/graph" element={<Graph />} />
             <Route path="/linkedlists" element={<LinkedLists />} />
+            <Route path="/binarysearch" element={<BinarySearch />} />
             <Route
               path="/"
               element={<div className="text-lg font-medium">Please select a DSA topic from the sidebar.</div>}

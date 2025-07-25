@@ -1,53 +1,198 @@
+//import React from "react";
 
-export default function Array() {
+const Array = () => {
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial, sans-serif", maxWidth: "800px", margin: "auto" }}>
-      <h1 style={{ color: "#2c3e50", borderBottom: "2px solid #2980b9", paddingBottom: "10px" }}>Arrays Tutorial</h1>
+    <div className="p-6 max-w-4xl mx-auto space-y-6 text-gray-800">
+      <h1 className="text-3xl font-bold text-blue-600">What is an Array?</h1>
+      <p>
+        An array is a linear data structure that stores a fixed-size sequence of
+        elements of the same data type in contiguous memory locations.
+      </p>
 
       <section>
-        <h2>What is an Array?</h2>
-        <p>
-          An <strong>array</strong> is a collection of elements identified by index or key. It is used to store multiple values in a single variable.
-        </p>
-      </section>
-
-      <section>
-        <h2>Key Properties of Arrays</h2>
-        <ul>
-          <li>Fixed or dynamic size depending on the programming language.</li>
-          <li>Elements are stored in contiguous memory locations.</li>
-          <li>Indexed starting from 0 in most programming languages.</li>
-          <li>Supports operations like traversal, insertion, deletion, and searching.</li>
+        <h2 className="text-xl font-semibold">Key Points:</h2>
+        <ul className="list-disc ml-6 space-y-1">
+          <li>Elements are indexed: index starts at 0.</li>
+          <li>Fast access using index: O(1) time.</li>
+          <li>Fixed size (in most languages).</li>
         </ul>
       </section>
 
       <section>
-        <h2>Common Array Operations</h2>
-        <ol>
-          <li><strong>Traversal:</strong> Accessing each element one by one.</li>
-          <li><strong>Insertion:</strong> Adding elements at a specific index or at the end.</li>
-          <li><strong>Deletion:</strong> Removing elements from the array.</li>
-          <li><strong>Searching:</strong> Finding elements by value or index.</li>
-          <li><strong>Sorting:</strong> Arranging elements in ascending or descending order.</li>
-        </ol>
+        <h2 className="text-xl font-semibold"> Array Representation</h2>
+        <div className="font-mono bg-gray-100 p-4 rounded">
+          <div>Index: &nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp; 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4</div>
+          <div>Element: 10  20  30  40  50</div>
+        </div>
       </section>
 
       <section>
-        <h2>Example: Array in JavaScript</h2>
-        <pre style={{ backgroundColor: "#f4f4f4", padding: "10px", borderRadius: "5px" }}>
-          {`const numbers = [1, 2, 3, 4, 5];
-console.log(numbers[0]); // Output: 1
-numbers.push(6); // Add 6 at the end
-console.log(numbers); // Output: [1, 2, 3, 4, 5, 6]`}
+        <h2 className="text-xl font-semibold">Common Array Operations</h2>
+        <table className="w-full text-left border border-gray-300">
+          <thead>
+            <tr className="bg-blue-100">
+              <th className="border p-2">Operation</th>
+              <th className="border p-2">Description</th>
+              <th className="border p-2">Time Complexity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ["Access", "Get value at a specific index", "O(1)"],
+              ["Search", "Linear search for a value", "O(n)"],
+              ["Insertion", "Add at the end (if space)", "O(1)"],
+              ["Insertion", "Insert at a position (shift needed)", "O(n)"],
+              ["Deletion", "Remove an element (shift needed)", "O(n)"],
+              ["Traversal", "Visit each element", "O(n)"],
+            ].map(([op, desc, time], idx) => (
+              <tr key={idx}>
+                <td className="border p-2">{op}</td>
+                <td className="border p-2">{desc}</td>
+                <td className="border p-2">{time}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-semibold"> Array Types</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold">1. One-Dimensional Array (1D)</p>
+            <pre className="bg-gray-100 p-2 rounded text-sm overflow-auto">
+{`int arr[5] = {1, 2, 3, 4, 5};`}
+            </pre>
+          </div>
+          <div>
+            <p className="font-semibold">2. Two-Dimensional Array (2D)</p>
+            <pre className="bg-gray-100 p-2 rounded text-sm overflow-auto">
+{`int matrix[3][3] = {
+  {1, 2, 3},
+  {4, 5, 6},
+  {7, 8, 9}
+};`}
+            </pre>
+          </div>
+          <div>
+            <p className="font-semibold">3. Multi-Dimensional Array</p>
+            <p>Nested arrays beyond 2D.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-semibold"> Dynamic Arrays</h2>
+        <p>
+          Languages like Python or C++ STL vector/Java ArrayList use dynamic
+          arrays that can resize automatically.
+        </p>
+        <pre className="bg-gray-100 p-2 rounded text-sm overflow-auto">
+{`vector<int> v;
+v.push_back(10);`}
         </pre>
       </section>
 
       <section>
-        <h2>Why Are Arrays Important?</h2>
-        <p>
-          Arrays are fundamental data structures widely used in computer science and programming because they provide efficient access to elements and are the building blocks for more complex structures like lists, stacks, queues, and matrices.
-        </p>
+        <h2 className="text-xl font-semibold">Advantages</h2>
+        <ul className="list-disc ml-6 space-y-1">
+          <li>Fast access to elements using index.</li>
+          <li>Easy to implement.</li>
+          <li>Good locality of reference (cache-friendly).</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-semibold"> Disadvantages</h2>
+        <ul className="list-disc ml-6 space-y-1">
+          <li>Fixed size (static array).</li>
+          <li>Insertion and deletion costly (O(n)).</li>
+          <li>Cannot insert in between without shifting.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-semibold">Common Array Problems in DSA</h2>
+        <ul className="list-disc ml-6 space-y-1">
+          <li>Find the maximum/minimum element</li>
+          <li>Reverse the array</li>
+          <li>Kadane’s Algorithm (Maximum Subarray Sum)</li>
+          <li>Binary Search</li>
+          <li>Rotate array</li>
+          <li>Check for duplicates</li>
+          <li>Merge two sorted arrays</li>
+          <li>Prefix Sum and Sliding Window Techniques</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-semibold"> Array Techniques to Master in DSA</h2>
+        <table className="w-full text-left border border-gray-300">
+          <thead>
+            <tr className="bg-blue-100">
+              <th className="border p-2">Technique</th>
+              <th className="border p-2">Description/Use Case</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ["Sliding Window", "Fixed or variable window problems"],
+              ["Two Pointers", "Sorted arrays, duplicates, partitions"],
+              ["Prefix Sum", "Range sum queries, subarrays"],
+              ["Binary Search", "Sorted arrays, finding elements efficiently"],
+              ["Hashing (via Map)", "Frequencies, duplicates, complements"],
+              ["Sorting", "Required before using two pointers"],
+            ].map(([tech, desc], idx) => (
+              <tr key={idx}>
+                <td className="border p-2">{tech}</td>
+                <td className="border p-2">{desc}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-semibold">Sample Code (C++)</h2>
+        <div>
+          <p className="font-semibold">Linear Search:</p>
+          <pre className="bg-gray-100 p-2 rounded text-sm overflow-auto">
+{`int linearSearch(int arr[], int n, int key) {
+  for(int i = 0; i < n; i++) {
+    if(arr[i] == key) return i;
+  }
+  return -1;
+}`}
+          </pre>
+        </div>
+
+        <div>
+          <p className="font-semibold mt-4">Reverse Array:</p>
+          <pre className="bg-gray-100 p-2 rounded text-sm overflow-auto">
+{`void reverseArray(int arr[], int n) {
+  int start = 0, end = n - 1;
+  while(start < end) {
+    swap(arr[start], arr[end]);
+    start++;
+    end--;
+  }
+}`}
+          </pre>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-semibold"> Real-life Applications of Arrays</h2>
+        <ul className="list-disc ml-6 space-y-1">
+          <li>Storing data in memory (like a list of names or numbers)</li>
+          <li>Lookup tables (e.g., hash maps use arrays underneath)</li>
+          <li>Matrix representation</li>
+          <li>Image pixel data</li>
+          <li>Implementing other data structures (heaps, stacks, queues)</li>
+        </ul>
       </section>
     </div>
   );
-}
+};
+
+export default Array;
