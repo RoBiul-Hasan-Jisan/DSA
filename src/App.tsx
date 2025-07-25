@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-do
 
 import Array from "./DSA/Array";
 import Graph from "./DSA/Graph";
-import LikedLists from "./DSA/LinkedLists"; 
+import LinkedLists from "./DSA/LinkedLists"; // Fixed: LikedLists → LinkedLists
 
 const topics = [
   { name: "Array", path: "/array" },
   { name: "Graph", path: "/graph" },
-  { name: "Liked Lists", path: "/likedlists" },
+  { name: "Linked Lists", path: "/linkedlists" }, // Fixed path
 ];
 
 const ResponsiveSidebarWrapper: React.FC<{
@@ -17,7 +17,7 @@ const ResponsiveSidebarWrapper: React.FC<{
 }> = ({ showSidebar, toggleSidebar }) => {
   return (
     <>
-      {/* Overlay for mobile when sidebar is open */}
+      {/* Mobile overlay */}
       <div
         className={`fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden ${
           showSidebar ? "block" : "hidden"
@@ -25,11 +25,12 @@ const ResponsiveSidebarWrapper: React.FC<{
         onClick={toggleSidebar}
       ></div>
 
+      {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-gray-100 z-30 transform transition-transform duration-300 ease-in-out
-          ${
-            showSidebar ? "translate-x-0" : "-translate-x-full"
-          } md:translate-x-0 md:static md:flex md:flex-col`}
+        role="navigation"
+        aria-label="Sidebar navigation"
+        className={`fixed top-0 left-0 h-full w-64 bg-gray-100 overflow-y-auto z-30 transform transition-transform duration-300 ease-in-out
+          ${showSidebar ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:static md:flex md:flex-col`}
       >
         <div className="p-6">
           <h2 className="text-xl font-bold mb-6">DSA Topics</h2>
@@ -49,6 +50,15 @@ const ResponsiveSidebarWrapper: React.FC<{
               </li>
             ))}
           </ul>
+
+          {/* Back to All Topics link */}
+          <hr className="my-4" />
+          <NavLink
+            to="/"
+            className="block px-3 py-2 rounded hover:bg-gray-300 text-sm font-semibold"
+          >
+            ← Back to All Topics
+          </NavLink>
         </div>
       </aside>
     </>
@@ -61,7 +71,7 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      {/* Hamburger button - visible on small screens */}
+      {/* Hamburger Button */}
       <button
         onClick={toggleSidebar}
         className="fixed top-4 left-4 z-40 p-2 rounded-md bg-blue-600 text-white md:hidden"
@@ -71,16 +81,24 @@ const App: React.FC = () => {
       </button>
 
       <div className="p-6 flex space-x-6 min-h-[calc(100vh-120px)] relative">
-        {/* Responsive Sidebar */}
+        {/* Sidebar */}
         <ResponsiveSidebarWrapper showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
 
-        {/* Main content */}
-        <main className={`flex-1 w-full min-h-screen ${!showSidebar ? "" : "md:ml-64"}`}>
+        {/* Main Content */}
+        <main
+          role="main"
+          aria-label="Main content"
+          className={`flex-1 w-full min-h-screen ${!showSidebar ? "" : "md:ml-64"}`}
+        >
           <Routes>
             <Route path="/array" element={<Array />} />
             <Route path="/graph" element={<Graph />} />
-            <Route path="/likedlists" element={<LikedLists />} />
-            <Route path="/" element={<div>Please select a DSA topic from the sidebar.</div>} />
+            <Route path="/linkedlists" element={<LinkedLists />} />
+            <Route
+              path="/"
+              element={<div className="text-lg font-medium">Please select a DSA topic from the sidebar.</div>}
+            />
+            <Route path="*" element={<div>404 - Page Not Found</div>} />
           </Routes>
         </main>
       </div>
