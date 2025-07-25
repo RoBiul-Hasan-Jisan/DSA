@@ -53,12 +53,13 @@ const ResponsiveSidebarWrapper: React.FC<{
 
           {/* Back to All Topics link */}
           <hr className="my-4" />
-         <NavLink
-  to="/"
+       <a
+  href="https://craft-byte-hq.vercel.app/"
   className="block px-3 py-2 rounded hover:bg-gray-300 text-sm font-semibold"
 >
-  ← Back to All Topics  https://craft-byte-hq.vercel.app/
-</NavLink>
+  ← Back to All Topics  
+</a>
+
 
         </div>
       </aside>

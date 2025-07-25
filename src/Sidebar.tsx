@@ -53,12 +53,13 @@ export default function Sidebar() {
 
         <hr className="my-4" />
 
-        <NavLink
-          to="/"
-          className="block py-2 px-3 rounded hover:bg-gray-300 text-sm font-semibold"
-        >
-          ← Back to All Topics
-        </NavLink>
+        <a
+  href="https://craft-byte-hq.vercel.app/"
+  className="block py-2 px-3 rounded hover:bg-gray-300 text-sm font-semibold"
+>
+  ← Back to All Topics
+</a>
+
       </nav>
     </aside>
   );
